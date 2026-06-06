@@ -6,7 +6,7 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Instalar Dependências
+          name: Instalar Dependencias
           command: npm install
       - run:
           name: Executar Testes Automatizados
@@ -15,4 +15,3 @@ workflows:
   run-pipeline:
     jobs:
       - build-and-test
-      
