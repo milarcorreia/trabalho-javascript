@@ -1,18 +1,21 @@
 version: 2.1
+
 jobs:
   build-and-test:
-    docker:
-      - image: cimg/node:20.0
+    # Ativa o uso do agente proprietário (Self-hosted runner)
+    machine: true
+    resource_class: milarcorreia/meu-computador
+    
     steps:
       - checkout
       - run:
-          name: Instalar Dependencias
+          name: Instalar Dependencias no Agente Local
           command: npm install
       - run:
-          name: Executar Testes Automatizados
+          name: Executar Testes Automatizados no Agente
           command: npm test
-      
-      # PLUGIN DE RELATÓRIO: Salva os resultados gerados para o painel do CircleCI
+          
+      # Plugin de relatórios das etapas anteriores
       - store_test_results:
           path: test-results
       - store_artifacts:
